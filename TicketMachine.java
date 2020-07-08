@@ -19,15 +19,25 @@ public class TicketMachine
     private Integer total;
     // The number of tickets printed.
     private Integer ticketNumber;
+    //Exercise 2.15
+    private Integer status;
 
     /**
      * Create a machine that issues tickets of the given price.
      * Note that the price must be greater than zero, and there
      * are no checks to ensure this.
      */
-    public TicketMachine(Integer ticketCost)
+    public TicketMachine() //Exercise 2.39 removed price parameter
     {
-        price = ticketCost;
+        price = 1000;
+        balance = 0;
+        total = 0;
+        ticketNumber = 0;
+    }
+    
+    //Exercise 2.42
+    public TicketMachine(Integer ticketPrice){
+        price = ticketPrice;
         balance = 0;
         total = 0;
         ticketNumber = 0;
@@ -58,6 +68,11 @@ public class TicketMachine
     {
         return balance;
     }
+    
+    //Exercise 2.24
+    public Integer getTotal(){
+        return total;
+    }
 
     /**
      * Receive an amount of money in cents from a customer.
@@ -78,6 +93,18 @@ public class TicketMachine
         return ticketNumber;
     }
     
+    //Exercise 2.30 and 2.41
+    public void setPrice(Integer ticketCost){ //mutator method
+        price = ticketCost;
+    }
+    
+    //Exercise 2.32
+    public void discount (Integer amount){
+        price = price - amount;
+        if(price < 0){
+            price = 0;
+        }
+    }
 
     /**
      * Print a ticket.
@@ -94,5 +121,20 @@ public class TicketMachine
         balance = 0;
         
         return "Ticket price: " + price + " cents. " + "Your total is " + total + ".";
+    }
+    
+    //Exercise 2.33
+    public void prompt(){
+        System.out.println("Please insert the correct amount of money");
+    }
+    
+    //Exercise 2.34
+    public void showPrice(){
+        System.out.println("The price of a ticket is " + price + " cents.");
+    }
+    
+    //Exercise 2.40
+    public void empty(){ //mutator method
+        total = 0;
     }
 }
